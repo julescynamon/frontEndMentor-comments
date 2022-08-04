@@ -2,14 +2,26 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { setComments } from "./features/comments.slice";
+import { setUsers } from "./features/user.slice";
 
 function App() {
 
 	const dispatch = useDispatch();
     const commentsData = useSelector((state) => state.comments.comments);
+    const userData = useSelector((state) => state.currentUser.currentUser);
+
 	
 
+	const getUsers = () => {
+		axios
+		.get("http://localhost:5000/currentUser")
+		.then((res) => {
+			dispatch(setUsers(res.data));
+			console.log(res.data);
+		})
+		};
 
+		
 	
 
 
@@ -23,6 +35,7 @@ function App() {
     }
 
     useEffect(() => {
+		getUsers();
         getComments();
     }, []);
 

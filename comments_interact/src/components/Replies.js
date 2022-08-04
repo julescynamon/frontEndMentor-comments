@@ -3,8 +3,8 @@ import React from 'react';
 export default function Replies() {
     return (
         <>
-        {
-            commentsData?.map((replies) => (
+        {/* {
+            repliesData?.map((replies) => (
                 <div className="card" key={ replies.id }>
                 <div className="content">
             			<div className="card-header">
@@ -25,7 +25,7 @@ export default function Replies() {
 			</button>
             </div>
             </div>
-            ))}
+            ))} */}
         </>
     )
 }

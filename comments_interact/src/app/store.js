@@ -4,7 +4,7 @@ import commentsReducer from '../features/comments.slice';
 
 export default configureStore({
     reducer : {
-        currentUser : userReducer,
         comments : commentsReducer,
+        currentUser : userReducer,
     },
 });

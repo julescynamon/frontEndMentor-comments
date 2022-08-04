@@ -201,7 +201,7 @@ body {
 
 .btn-com {
     padding: 0.5rem 1rem;
-    margin: 0.5rem 1rem;
+    margin-left: 1rem;
     border: 1px solid var(--moderate-blue);
     border-radius: 5px;
     background-color: var(--moderate-blue);

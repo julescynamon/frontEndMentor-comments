@@ -18,10 +18,13 @@ export const commentsSlice = createSlice({
                     return comment;
                 }
             })
+        },
+        addComment: (state, { payload }) => {
+            state.comments.push(payload);
         }
     }
 })
 
 
-export const { setComments, updateScore } = commentsSlice.actions;
+export const { setComments, updateScore, addComment } = commentsSlice.actions;
 export default commentsSlice.reducer;

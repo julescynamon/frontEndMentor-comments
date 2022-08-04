@@ -13,6 +13,8 @@ function App() {
     const commentsData = useSelector((state) => state.comments.comments);
     const userData = useSelector((state) => state.currentUser.currentUser);
 
+	console.log(userData);
+
 
 	const getUsers = () => {
 		axios
@@ -36,7 +38,7 @@ function App() {
     useEffect(() => {
 		getUsers();
 		getComments();
-    }, []);
+    }, );
 
 
 

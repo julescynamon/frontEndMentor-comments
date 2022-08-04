@@ -1,7 +1,12 @@
 import React from 'react';
+import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { addComment } from '../features/comments.slice';
 
 
 export default function Form({ user }) {
+
+
 
 
 
@@ -14,7 +19,6 @@ export default function Form({ user }) {
                             <form action="" method="post">
                                 <input type="text" name="content" id="content" placeholder="add comment..." />
                             </form>
-                        
                         <button className="btn-com">Send</button>
                     </div>
                 </div>

@@ -13,8 +13,6 @@ function App() {
     const commentsData = useSelector((state) => state.comments.comments);
     const userData = useSelector((state) => state.currentUser.currentUser);
 
-	console.log(userData);
-
 
 	const getUsers = () => {
 		axios
@@ -38,7 +36,7 @@ function App() {
     useEffect(() => {
 		getUsers();
 		getComments();
-    }, );
+    }, [ ]);
 
 
 
@@ -49,7 +47,7 @@ function App() {
 				{commentsData?.map((com, id) => (
 					<Comments key={id} com={com}/>
         		))}
-				<Form user={userData} />
+				<Form userData={userData} getComments={getComments} />
 			</div>
 		</>
 	);

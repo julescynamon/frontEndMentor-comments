@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { updateScore } from '../features/comments.slice';
 import Replies from './Replies';
 
-export default function Comments({com}) {
+export default function Comments({com , userData, getComments}) {
 
     const dispatch = useDispatch();
     const [score, setScore] = useState(com.score);
@@ -76,7 +76,7 @@ export default function Comments({com}) {
 			</button>
             </div>
         	</div>
-            { showReplies && <Replies replies={com.replies} /> }
+            { showReplies && <Replies replies={com.replies} userData={userData} com={com} getComments={getComments} /> }
         </div>
     )
 }

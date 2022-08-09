@@ -1,12 +1,12 @@
 import axios from 'axios';
 import { useRef } from "react";
 import { useDispatch } from 'react-redux';
-import { addComment } from '../features/comments.slice';
+import { addReplies } from '../features/comments.slice';
 import { timestampParser } from './Utils';
 
 
-export default function Form({ userData, getComments }) {
-    const inputCom = useRef();
+export default function FormReplies({ userData, com, getComments }) {
+    const inputReplies = useRef();
     const formRef = useRef();
     const dispatch = useDispatch();
     
@@ -14,29 +14,28 @@ export default function Form({ userData, getComments }) {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        const comment = {
+        const replies = [
+            ...com.replies, 
+            {
             id: Math.random(),
-            content: inputCom.current.value,
+            content: inputReplies.current.value,
             createdAt: timestampParser(Date.now()),
             score: 0,
+            replyingTo: com.username,
             user: {
                 image: userData.image,
-                username: userData.username
-            },
-            replies: []
+                username: userData.username,
+            }
         }
+    ];
 
-        axios.post('http://localhost:5000/comments', comment).then((res) => {
-            dispatch(addComment(res.data));
+        axios.patch(`http://localhost:5000/comments/${com.id}`, {replies}).then((res) => {
+            dispatch(addReplies([com.id, replies]));
             dispatch(getComments());
-            formRef.current.reset();
+            formRef.reset();
         })
 
     }
-
-
-
-console.log(userData);
 
 
     return (
@@ -46,7 +45,7 @@ console.log(userData);
                 <div className="form">
                     <div className="img-user"><img src={userData.image.png} alt={userData.username} /></div>
                     <form onSubmit={(e) => handleSubmit(e)} ref={formRef}>
-                    <input type="text" placeholder="Add comment ..." ref={inputCom} />
+                    <input type="text" placeholder="Add comment ..." ref={inputReplies} />
                     <input className="input-btn" type="submit" value="Envoyer" />
                     </form>
                 </div>

@@ -45,7 +45,7 @@ function App() {
 		<>	
 			<div>
 				{commentsData?.map((com, id) => (
-					<Comments key={id} com={com}/>
+					<Comments key={id} com={com} userData={userData} getComments={getComments}/>
         		))}
 				<Form userData={userData} getComments={getComments} />
 			</div>

@@ -1,7 +1,8 @@
 import React from 'react';
+import FormReplies from './FormReplies';
 
 
-export default function Replies({ replies }) {
+export default function Replies({ replies, userData, com, getComments }) {
 
 
 
@@ -16,7 +17,14 @@ export default function Replies({ replies }) {
                                 <div className="img-user"><img src={ reply.user.image.png } alt="" /></div>
                                     <h2 className="user-name">{ reply.user.username }</h2>
                                     <span className="created-date">{ reply.createdAt }</span>
-                    <button className="btn-reply" ><svg width="14" height="13" xmlns="http://www.w3.org/2000/svg"><path d="M.227 4.316 5.04.16a.657.657 0 0 1 1.085.497v2.189c4.392.05 7.875.93 7.875 5.093 0 1.68-1.082 3.344-2.279 4.214-.373.272-.905-.07-.767-.51 1.24-3.964-.588-5.017-4.829-5.078v2.404c0 .566-.664.86-1.085.496L.227 5.31a.657.657 0 0 1 0-.993Z" fill="#5357B6"/></svg> Reply</button>
+                    { userData.username === reply.user.username ? (
+                        <div className="button">
+                            <button className="delete-btn">Delete</button>
+                            <button className="edit-btn">Edit</button>
+                        </div>
+                        ) : (
+                            <button className="btn-reply" ><svg width="14" height="13" xmlns="http://www.w3.org/2000/svg"><path d="M.227 4.316 5.04.16a.657.657 0 0 1 1.085.497v2.189c4.392.05 7.875.93 7.875 5.093 0 1.68-1.082 3.344-2.279 4.214-.373.272-.905-.07-.767-.51 1.24-3.964-.588-5.017-4.829-5.078v2.404c0 .566-.664.86-1.085.496L.227 5.31a.657.657 0 0 1 0-.993Z" fill="#5357B6"/></svg> Reply</button> ) }    
+                    
                     </div>
                     <p className="comments">{ reply.content }</p>
                     </div>
@@ -33,7 +41,7 @@ export default function Replies({ replies }) {
             </div>
         ))
             }
-
+            <FormReplies userData={ userData } com={com} getComments={getComments} />
         </>
     )
 }
